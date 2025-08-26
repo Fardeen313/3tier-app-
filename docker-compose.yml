@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_USER=admin               # your RDS username
+      - DB_PASSWORD=yourpassword    # your RDS password
+      - DB_HOST=mydb.xxxxxx.us-east-1.rds.amazonaws.com   # RDS endpoint
+      - DB_NAME=mydb
